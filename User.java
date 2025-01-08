@@ -45,7 +45,7 @@
     public boolean follows(String name) {
         //// Replace the following statement with your code
         for (int i = 0; i < fCount; i++) {
-            if(follows[i] != null && follows[i].equals(name)){
+            if(follows[i] != null && follows[i].equalsIgnoreCase(name)){
                 return true;
             }
         }
@@ -57,7 +57,7 @@
     public boolean addFollowee(String name) {
         //// Replace the following statement with your code
         for (int i = 0; i < fCount; i++) {
-            if (follows[i].equals(name)) {
+            if (follows[i].equalsIgnoreCase(name)) {
                 return false;
             }
         }
@@ -74,7 +74,7 @@
     public boolean removeFollowee(String name) {
         //// Replace the following statement with your code
         for ( int i = 0; i < fCount; i++){
-            if (follows[i].equals(name)) {
+            if (follows[i].equalsIgnoreCase(name)) {
                 for (int j = i; j < fCount - 1; j++) {
                     follows[j] = follows[j + 1];
                  }
@@ -93,7 +93,7 @@
         int count = 0;
         for(int i = 0; i < fCount; i++){
             for (int j = 0; j < other.fCount; j++) {
-                if(follows[i].equals(other.follows[j])) {
+                if(follows[i].equalsIgnoreCase(other.follows[j])) {
                     count++;
                     break;
                 }
@@ -108,7 +108,7 @@
         //// Replace the following statement with your code
         boolean followOther = false;
         for(int i = 0; i < fCount; i++){
-            if(follows[i].equals(other.getName())) {
+            if(follows[i].equalsIgnoreCase(other.getName())) {
                 followOther = true;
                 break;
             }
@@ -118,8 +118,8 @@
             return false;
         }
 
-        for(int i = 0; i < fCount; i++){
-            if(other.getfFollows()[i].equals(name)) {
+        for(int i = 0; i < other.fCount; i++){
+            if(other.getfFollows()[i].equalsIgnoreCase(name)) {
                 return true;
             }
         }
