@@ -45,7 +45,7 @@
     public boolean follows(String name) {
         //// Replace the following statement with your code
         for (int i = 0; i < fCount; i++) {
-            if(follows[i].equals(name)){
+            if(follows[i] != null && follows[i].equals(name)){
                 return true;
             }
         }
@@ -58,7 +58,6 @@
         //// Replace the following statement with your code
         for (int i = 0; i < fCount; i++) {
             if (follows[i].equals(name)) {
-                // User already follows the given name, return false
                 return false;
             }
         }

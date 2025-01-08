@@ -44,13 +44,13 @@ public class Network {
     *  Otherwise, creates a new user with the given name, adds the user to this network, and returns true. */
     public boolean addUser(String name) {
         //// Replace the following statement with your code
+        if (userCount >= users.length) {
+            return false; 
+        }
         for (int i = 0; i < userCount; i++) {
             if (users[i].getName().equals(name)) {
                 return false;
             }
-        }
-        if (getUser(name) != null) {
-            return false; 
         }
         
             users[userCount] = new User(name);
@@ -64,12 +64,15 @@ public class Network {
      *  or if the "follows" addition failed for some reason, returns false. */
     public boolean addFollowee(String name1, String name2) {
         //// Replace the following statement with your code
-        if(getUser(name1) == null || getUser(name2) == null) {
+        if(getUser(name1) == null || getUser(name2) == null || name1.equals(name2)) {
             return false;
         }
         User user1 = getUser(name1);
-        user1.addFollowee(name2);
-        return true;
+        if (user1.follows(name2)) {
+            return false;
+        }
+        return user1.addFollowee(name2);
+
         
     }
     
@@ -114,7 +117,7 @@ public class Network {
         //// Replace the following statement with your code
         int count = 0;
         for(int i = 0; i < userCount; i++){
-            for(int j = 0; j < users[j].getfCount(); j++){
+            for(int j = 0; j < users[i].getfCount(); j++){
                 if(users[i].getfFollows()[j].equals(name)) {
                     count++;
                 }
@@ -130,8 +133,11 @@ public class Network {
         result.append("Network:\n");
     
         for (int i = 0; i < userCount; i++) {
-            result.append(users[i].toString() + "\n");
+            result.append(users[i].toString());
+        if (i < userCount - 1) {
+            result.append(" ");  
         }
+    }
     
         return result.toString();
     }
